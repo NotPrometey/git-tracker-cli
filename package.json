@@ -1,6 +1,6 @@
 {
   "name": "git-tracker-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Dependency Injection for Vue.js 2",
   "authors": [
     {
@@ -30,16 +30,12 @@
     "git-tracker-cli": "./cli.js"
   },
   "dependencies": {
-    "delay": "^4.3.0",
     "import-jsx": "^3.0.0",
     "ink": "^2.4.0",
-    "ink-box": "^1.0.0",
     "ink-spinner": "^3.0.1",
-    "ink-text-input": "^3.2.1",
     "lodash": "^4.17.15",
     "meow": "^5.0.0",
     "moment": "^2.24.0",
-    "p-queue": "^6.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.1",
     "react-router-dom": "^5.1.2"

@@ -128,6 +128,7 @@ class App extends React.Component {
 
         let items = stdout.split(';')
           .filter(item => item.trim())
+          .map(item => item.trim())
           .map(item => {
             const [ path, message = '', body = '', date ] = item.split('|');
 
