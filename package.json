@@ -1,0 +1,95 @@
+{
+  "name": "git-tracker-cli",
+  "version": "0.0.6",
+  "description": "Dependency Injection for Vue.js 2",
+  "authors": [
+    {
+      "name": "Stepan Telitsyn",
+      "email": "admin@notprometey.pro"
+    }
+  ],
+  "main": "cli.js",
+  "homepage": "https://github.com/NotPrometey/git-tracker-cli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NotPrometey/git-tracker-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NotPrometey/git-tracker-cli/issues"
+  },
+  "keywords": [
+    "cli",
+    "git tracker",
+    "time tracker",
+    "git time tracker",
+    "git tracker cli",
+    "tracker"
+  ],
+  "license": "MIT",
+  "bin": {
+    "git-tracker-cli": "./cli.js"
+  },
+  "dependencies": {
+    "delay": "^4.3.0",
+    "import-jsx": "^3.0.0",
+    "ink": "^2.4.0",
+    "ink-box": "^1.0.0",
+    "ink-spinner": "^3.0.1",
+    "ink-text-input": "^3.2.1",
+    "lodash": "^4.17.15",
+    "meow": "^5.0.0",
+    "moment": "^2.24.0",
+    "p-queue": "^6.1.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.1",
+    "react-router-dom": "^5.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.2",
+    "ava": "^2.4.0",
+    "babel-loader": "^8.0.6",
+    "chalk": "^2.4.2",
+    "eslint": "^6.5.1",
+    "eslint-config-xo-react": "^0.20.0",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.1",
+    "ink-testing-library": "^1.0.2",
+    "xo": "^0.25.3"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "cli.js",
+    "app.js"
+  ],
+  "scripts": {
+    "eslint": "node_modules/.bin/eslint --fix .",
+    "test": "xo && ava"
+  },
+  "ava": {
+    "require": [
+      "@babel/register"
+    ]
+  },
+  "xo": {
+    "extends": "xo-react"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ]
+  }
+}
