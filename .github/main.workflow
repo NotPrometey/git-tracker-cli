@@ -1,8 +1,5 @@
 workflow "lint, publish" {
-  on = [
-    "push"
-    "pull_request"
-  ]
+  on = "push"
   resolves = [
     "lint",
     "publish",
