@@ -1,7 +1,7 @@
 {
   "name": "git-tracker-cli",
-  "version": "0.0.7",
-  "description": "Dependency Injection for Vue.js 2",
+  "version": "0.0.8",
+  "description": "The library that gives a rough estimation of the time spent on implementation based on the history of commits",
   "authors": [
     {
       "name": "Stepan Telitsyn",
