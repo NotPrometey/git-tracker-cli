@@ -155,7 +155,7 @@ class App extends React.Component {
         for (let day in items) {
           items[day] = items[day].map((data, index, arr) => {
 
-            let endTime = moment(day, 'DD/MM/YYYY').add(this.props.firstFour, 'h');
+            let endTime = moment(day, 'DD/MM/YYYY').add(this.props.firstHour, 'h');
 
             if(arr[index - 1]) {
               endTime = arr[index - 1].date
@@ -267,14 +267,14 @@ App.propTypes = {
   path: PropTypes.string,
   since: PropTypes.string,
   author: PropTypes.string,
-  firstFour: PropTypes.string
+  firstHour: PropTypes.string
 };
 
 App.defaultProps = {
   path: '.',
   since: '1 days',
   author: null,
-  firstFour: '9'
+  firstHour: '9'
 };
 
 module.exports = App;
