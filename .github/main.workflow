@@ -1,7 +1,7 @@
 workflow "lint, publish" {
   on = [
-    "push.master"
-    "pull_request.master"
+    "push"
+    "pull_request"
   ]
   resolves = [
     "lint",
