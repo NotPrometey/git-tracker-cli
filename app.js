@@ -267,7 +267,7 @@ App.propTypes = {
   path: PropTypes.string,
   since: PropTypes.string,
   author: PropTypes.string,
-  firstHour: PropTypes.string
+  firstHour: PropTypes.number
 };
 
 App.defaultProps = {
