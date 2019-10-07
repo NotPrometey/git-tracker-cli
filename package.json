@@ -1,6 +1,6 @@
 {
   "name": "git-tracker-cli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "The library that gives a rough estimation of the time spent on implementation based on the history of commits",
   "authors": [
     {
