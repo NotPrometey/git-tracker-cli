@@ -8,7 +8,7 @@ const { exec } = require('child_process');
 const { Box, Color, Text } = require('ink');
 const { default: Spinner } = require('ink-spinner');
 
-const { join } = require("path")
+const { join, resolve } = require('path');
 
 const fs = require('fs');
 const util = require('util');
@@ -21,19 +21,19 @@ const getDirectories = async (source) => {
   const data = await readdir(source);
 
   for (const dirent of data) {
-    const s = await stat(dirent)
+    const s = await stat(join(source, dirent));
 
     if(s.isDirectory()) {
       response.push(dirent)
     }
   }
   return response; 
-}
+};
 
 class App extends React.Component {
 
-  constructor() {
-    super();
+  constructor(...args) {
+    super(...args);
 
     this.state = {
       out: {},
@@ -60,7 +60,7 @@ class App extends React.Component {
       const response = [];
 
       for (const root of directories) {
-        const dir = await getDirectories(root)
+        const dir = await getDirectories(root);
         
         if (!dir.length) {
           continue;
@@ -74,10 +74,10 @@ class App extends React.Component {
       }
 
       return response;
-    }
+    };
 
-    getAllDirectories([this.props.path]).then(async (dirs) => {
-      dirs = flattenDeep(dirs)
+    getAllDirectories([resolve(this.props.path)]).then(async (dirs) => {
+      dirs = flattenDeep(dirs);
 
       function log (path, since, author) {
         return new Promise((resolve, reject) => {
@@ -104,7 +104,7 @@ class App extends React.Component {
       }
 
       for (const path of dirs) {
-        let author = this.props.author
+        let author = this.props.author;
 
         if (!author) {
           author = await user(path);
@@ -274,7 +274,7 @@ App.defaultProps = {
   path: '.',
   since: '1 days',
   author: null,
-  firstHour: '9'
+  firstHour: 9
 };
 
 module.exports = App;
