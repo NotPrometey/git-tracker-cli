@@ -3,18 +3,16 @@ const importJsx = require('import-jsx');
 const PropTypes = require('prop-types');
 const { merge } = require('lodash');
 
-const { Box, Color, Text } = require('ink');
-const { default: Spinner } = require('ink-spinner');
+const { Box, Color } = require('ink');
 
 const { resolve } = require('path');
-
 
 const getSubDirectories = require('./lib/dir');
 const getUserLog = require('./lib/git');
 const normolize = require('./lib/normalizer');
 
 const Project = importJsx('./components/project');
-const Errors = importJsx('./components/errors');
+const Loading = importJsx('./components/loading');
 
 class App extends React.Component {
 
@@ -23,7 +21,6 @@ class App extends React.Component {
 
     this.state = {
       out: {},
-      errors: [],
       loading: 'Searching',
       isLading: true,
       author: null
@@ -33,9 +30,10 @@ class App extends React.Component {
   handleError(e) {
     this.setState({
       ...this.state,
-      isLading: false,
-      errors: [e.toString()]
+      isLading: false
     });
+
+    throw e;
   }
 
   componentDidMount() {
@@ -83,42 +81,33 @@ class App extends React.Component {
 
   render() {
 
-    const { errors, isLading, out, loading } = this.state;
+    const { isLading, out, loading } = this.state;
 
-    const isErrors = errors.length;
     const isContent = Object.keys(out).length;
+
+    if (isLading) {
+      return <Loading text={loading}></Loading>;
+    }
 
     return (
       <Box flexDirection="column">
-        {isLading ? (
-          <Box>
-            <Color green>
-              <Spinner type="dots"/>
-              <Box marginLeft={2}><Text italic>{loading}</Text></Box>
-            </Color>
-          </Box>
-        ) : (
+
+        {isContent ? (
           <>
-            {isContent ? (
-              <>
-                {Object.keys(out).map(day => (
-                  <Box flexDirection="column" key={day}>
-                    {Object.keys(out[day]).map(project => (
-                      <Project key={project} day={day} name={project} data={out[day][project]}></Project>
-                    ))}
-                  </Box>
+            {Object.keys(out).map(day => (
+              <Box flexDirection="column" key={day}>
+                {Object.keys(out[day]).map(project => (
+                  <Project key={project} day={day} name={project} data={out[day][project]}></Project>
                 ))}
-              </>
-            ) : (
-              <Box>
-                {!isErrors ? (<Color blueBright>Not Found</Color>) : null}
               </Box>
-            )}
-
-            {isErrors ? (<Errors errors={errors}></Errors>) : null}
-
+            ))}
           </>
+        ) : (
+          <Box>
+            <Color blueBright>Not Found</Color>
+          </Box>
         )}
+
       </Box>
     );
   }
