@@ -58,8 +58,8 @@ class App extends React.Component {
 
           return getUserLog({ author, since, path })
             .then((stdout) => {
-              return normolize(stdout, { 
-                firstHour: this.props.firstHour 
+              return normolize(stdout, {
+                firstHour: this.props.firstHour
               });
             })
             .then(data => {
@@ -71,7 +71,7 @@ class App extends React.Component {
         });
 
         await Promise.all(promises);
-        
+
         this.setState({
           ...this.state,
           isLading: false
@@ -81,15 +81,15 @@ class App extends React.Component {
       .catch(this.handleError.bind(this));
   }
 
-	render() {
+  render() {
 
     const { errors, isLading, out, loading } = this.state;
 
     const isErrors = errors.length;
     const isContent = Object.keys(out).length;
 
-		return (
-			<Box flexDirection="column">
+    return (
+      <Box flexDirection="column">
         {isLading ? (
           <Box>
             <Color green>
@@ -99,29 +99,29 @@ class App extends React.Component {
           </Box>
         ) : (
           <>
-          {isContent ? (
-            <>
-            {Object.keys(out).map(day => (
-              <Box flexDirection="column" key={day}>
-                {Object.keys(out[day]).map(project => (
-                  <Project key={project} day={day} name={project} data={out[day][project]} ></Project>
+            {isContent ? (
+              <>
+                {Object.keys(out).map(day => (
+                  <Box flexDirection="column" key={day}>
+                    {Object.keys(out[day]).map(project => (
+                      <Project key={project} day={day} name={project} data={out[day][project]}></Project>
+                    ))}
+                  </Box>
                 ))}
+              </>
+            ) : (
+              <Box>
+                {!isErrors ? (<Color blueBright>Not Found</Color>) : null}
               </Box>
-            ))}
-            </>
-          ) : (
-            <Box>
-              {!isErrors ? ( <Color blueBright>Not Found</Color> ) : null }
-            </Box>
-          )}
+            )}
 
-          {isErrors ? ( <Errors errors={errors} ></Errors> ) : null }
+            {isErrors ? (<Errors errors={errors}></Errors>) : null}
 
           </>
         )}
-			</Box>
-		);
-	}
+      </Box>
+    );
+  }
 }
 
 App.propTypes = {
