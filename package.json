@@ -47,10 +47,14 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "ava": "^2.4.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "chalk": "^2.4.2",
     "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.3.0",
     "eslint-config-xo-react": "^0.20.0",
+    "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.1",
     "ink-testing-library": "^1.0.2",
@@ -64,7 +68,8 @@
     "app.js"
   ],
   "scripts": {
-    "eslint": "node_modules/.bin/eslint --fix .",
+    "lint": "node_modules/.bin/eslint ./**/*.js",
+    "lint:fix": "node_modules/.bin/eslint --fix ./**/*.js",
     "test": "xo && ava"
   },
   "ava": {
