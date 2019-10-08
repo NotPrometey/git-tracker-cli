@@ -1,6 +1,6 @@
 {
   "name": "git-tracker-cli",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "The library that gives a rough estimation of the time spent on implementation based on the history of commits",
   "authors": [
     {
@@ -65,7 +65,9 @@
   },
   "files": [
     "cli.js",
-    "app.js"
+    "app.js",
+    "lib/**/*.js",
+    "components/**/*.js"
   ],
   "scripts": {
     "lint": "node_modules/.bin/eslint ./**/*.js",
