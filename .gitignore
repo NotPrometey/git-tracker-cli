@@ -5,6 +5,9 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+### JetBrains ###
+.idea/*
+
 ### Node ###
 # Logs
 logs
