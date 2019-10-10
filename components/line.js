@@ -10,10 +10,14 @@ class Line extends React.Component {
 
     return (
       <Box marginLeft={2} width={120}>
-        <Box flexBasis={20}><Text italic>{time}</Text></Box>
+        <Box flexBasis={20}>
+          <Text italic>{time}</Text>
+        </Box>
         <Box flexDirection="column">
           <Text>{message}</Text>
-          <Text><Color gray>{body}</Color></Text>
+          <Text>
+            <Color gray>{body}</Color>
+          </Text>
         </Box>
       </Box>
     );

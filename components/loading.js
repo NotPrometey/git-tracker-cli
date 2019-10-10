@@ -14,7 +14,9 @@ class Loading extends React.Component {
         <Box>
           <Color green>
             <Spinner type="dots"/>
-            <Box marginLeft={2}><Text italic>{text}</Text></Box>
+            <Box marginLeft={2}>
+              <Text italic>{text}</Text>
+            </Box>
           </Color>
         </Box>
       </Box>

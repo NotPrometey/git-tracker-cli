@@ -10,6 +10,12 @@ const Line = importJsx('./line');
 
 class Project extends React.Component {
 
+  get totalTime() {
+    return moment.duration(this.props.data.reduce((prev, current) => {
+      return prev + current.spendTime;
+    }, 0), 'm').humanize();
+  }
+
   render() {
 
     const { day, name, data } = this.props;
@@ -21,15 +27,19 @@ class Project extends React.Component {
         </Color>
         <Box marginBottom={1} flexDirection="column">
           {data.map(({ spend, message, body }, key) => (
-            <Line key={key} time={spend} message={message.trim()} body={body.trim()} ></Line>
+            <Line
+              key={key}
+              time={spend}
+              message={message.trim()}
+              body={body.trim()}
+            />
           ))}
 
           <Color blueBright>
-            <Line time={
-                moment.duration(data.reduce((prev, current) => {
-                  return prev + current.spendTime;
-                }, 0), 'm').humanize()
-              } message="Total" ></Line>
+            <Line
+              time={this.totalTime}
+              message="Total"
+            />
           </Color>
         </Box>
       </>

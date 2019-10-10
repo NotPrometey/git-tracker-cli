@@ -7,17 +7,18 @@ const { Box, Color } = require('ink');
 
 const { resolve } = require('path');
 
-const getSubDirectories = require('./lib/dir');
+const { getSubDirectories } = require('./lib/dir');
 const getUserLog = require('./lib/git');
 const normolize = require('./lib/normalizer');
+const validate = require('./lib/validate');
 
 const Project = importJsx('./components/project');
 const Loading = importJsx('./components/loading');
 
 class App extends React.Component {
 
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
 
     this.state = {
       out: {},
@@ -29,7 +30,6 @@ class App extends React.Component {
 
   handleError(e) {
     this.setState({
-      ...this.state,
       isLading: false
     });
 
@@ -50,7 +50,6 @@ class App extends React.Component {
 
         const promises = dirs.map(path => {
           this.setState({
-            ...this.state,
             loading: path
           });
 
@@ -61,17 +60,13 @@ class App extends React.Component {
               });
             })
             .then(data => {
-              this.setState({
-                ...this.state,
-                out: merge(this.state.out, data)
-              });
+              this.setState((state) => ({ out: merge(state.out, data) }));
             });
         });
 
         await Promise.all(promises);
 
         this.setState({
-          ...this.state,
           isLading: false
         });
 
@@ -86,7 +81,7 @@ class App extends React.Component {
     const isContent = Object.keys(out).length;
 
     if (isLading) {
-      return <Loading text={loading}></Loading>;
+      return <Loading text={loading}/>;
     }
 
     return (
@@ -97,7 +92,12 @@ class App extends React.Component {
             {Object.keys(out).map(day => (
               <Box flexDirection="column" key={day}>
                 {Object.keys(out[day]).map(project => (
-                  <Project key={project} day={day} name={project} data={out[day][project]}></Project>
+                  <Project
+                    key={day + project}
+                    day={day}
+                    name={project}
+                    data={out[day][project]}
+                  />
                 ))}
               </Box>
             ))}
@@ -114,10 +114,10 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  path: PropTypes.string,
   since: PropTypes.string,
   author: PropTypes.string,
-  firstHour: PropTypes.number
+  firstHour: validate.isHour,
+  path: validate.isPath,
 };
 
 App.defaultProps = {
