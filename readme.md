@@ -34,7 +34,7 @@ $ git-tracker-cli --help
 ## Example
 
 ```bash
-$ git-tracher-cli --since=2.days
+$ git-tracker-cli --since=2.days
 07/10/2019[git-tracker-cli]:
   an hour             chore<package>: add information
   3 hours             fix<args>: first hour
